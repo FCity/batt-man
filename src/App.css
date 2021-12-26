@@ -1,0 +1,72 @@
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
+/* Top */
+.container, .container-fluid {
+  height: 100vh
+}
+
+nav, .form, .input-group, .d-grid, .tables {
+  padding: 1em;
+}
+
+.btn-light {
+  border: 1px solid #333;
+  margin: 0 5px;
+}
+
+.fa-sun-o {
+  background-color: gold;
+  border-radius: 100%;
+}
+
+/* Home */
+.devices-table {
+  margin-top: 100px;
+}
+
+/* About */
+.about {
+  width: 50%;
+  margin: auto;
+}
+
+.p-2 p {
+  font-size: 1.1rem;
+}
+
+/* Forms */
+.form {
+  margin-top: 50px;
+}
+.input-group {
+  margin-top: -20px;
+}
+
+.input-group-text {
+  border: 0;
+}
+
+/* Tables */
+.table {
+  margin-bottom: 6em;
+}
+
+th, td {
+  text-align: center;
+}
+
+.exp {
+  position: relative;
+}
+
+.exp-tooltip {
+  display: none;
+  position: absolute;
+  top: 3px;
+  right: -25px;
+}
+
+.exp:hover .exp-tooltip {
+  display: inline-block;
+}
