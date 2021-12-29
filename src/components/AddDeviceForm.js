@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { AppContext, FormsContext } from '../../../App'
+import { AppContext, FormsContext } from '../App'
 import { v4 as uuid } from 'uuid'
 
 export default function AddDeviceForm() {

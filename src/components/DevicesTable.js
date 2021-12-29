@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { AppContext } from '../../App'
+import { AppContext } from '../App'
 
 export default function DevicesTable(props) {
   const { devices, setDevices, getDevices, darkTheme } = useContext(AppContext)

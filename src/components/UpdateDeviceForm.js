@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { AppContext, FormsContext } from '../../../App'
+import { AppContext, FormsContext } from '../App'
 
 export default function UpdateDeviceForm(props) {
   const { devices, setDevices, getDevices } = useContext(AppContext)

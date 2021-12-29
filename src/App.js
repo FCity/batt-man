@@ -1,9 +1,9 @@
 import React, { createContext, useState, useEffect, useMemo } from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Home from './components/Home'
-import DevicesTable from './components/table/DevicesTable'
-import AddDeviceForm from './components/forms/add/AddDeviceForm'
-import UpdateDeviceForm from './components/forms/update/UpdateDeviceForm'
+import DevicesTable from './components/DevicesTable'
+import AddDeviceForm from './components/AddDeviceForm'
+import UpdateDeviceForm from './components/UpdateDeviceForm'
 import About from './components/About'
 import './App.css'
 
@@ -89,16 +89,6 @@ export default function App() {
           <Link to="/forms/add/device" className="btn btn-light" title="Add Room or Device">Add Device</Link>
           <Link to="/about" className="btn btn-light" title="About Page">About</Link>
         </nav>
-
-        {devices.map(device => (
-          <ul key={device.id}>
-            <li>{device.id}</li>
-            <li>{device.type}</li>
-            <li>{device.name}</li>
-            <li>{device.room}</li>
-            <li>{device.exp}</li>
-          </ul>
-        ))}
 
         <div className="container">
           <AppContext.Provider value={data}>

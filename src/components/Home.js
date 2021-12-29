@@ -1,5 +1,5 @@
 import React from 'react'
-import DevicesTable from './table/DevicesTable'
+import DevicesTable from './DevicesTable'
 
 export default function Home() {
   return (
