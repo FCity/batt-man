@@ -1,9 +1,11 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { AppContext, FormsContext } from '../App'
+import { AppContext, FormsContext, useScreenSize } from '../App'
 
 export default function UpdateDeviceForm(props) {
-  const { devices, setDevices, getDevices } = useContext(AppContext)
+  const { devices, getDevices } = useContext(AppContext)
   const { months, years, deviceTypes, roomTypes } = useContext(FormsContext)
+
+  const screenSize = useScreenSize()
 
   const [deviceType, setDeviceType] = useState('')
   const [deviceName, setDeviceName] = useState('')
@@ -27,7 +29,7 @@ export default function UpdateDeviceForm(props) {
       setBatteryExpMonth(device.exp.slice(0, 3))
       setBatteryExpYear(device.exp.slice(-4))
     }
-  }, [props.match.params.id])
+  }, [devices, props.match.params.id])
 
   const updateDevice = () => {
     const device = {
@@ -52,6 +54,8 @@ export default function UpdateDeviceForm(props) {
 
   return (
     <div className="form">
+      { screenSize > 666 ? 
+      <>
       <div className="input-group">
         <label className="input-group-text bg-white" htmlFor="device-type">Device type:</label>
         <select className="form-select" id="device-type" value={deviceType} onChange={handleDeviceType}>
@@ -84,6 +88,35 @@ export default function UpdateDeviceForm(props) {
           { years.map(year => <option key={year} value={year}>{year}</option>) }
         </select>
       </div>
+      </>
+      :
+      <>
+      <label className="input-group-text bg-white" htmlFor="device-type">Device type:</label>
+      <select className="form-select" id="device-type" value={deviceType} onChange={handleDeviceType}>
+        <option></option>
+        { deviceTypes.map(deviceType => <option key={deviceType} value={deviceType}>{deviceType}</option>) }
+      </select>
+
+      <label className="input-group-text bg-white" htmlFor="device-name">Device name (optional):</label>
+      <input type="text" className="form-control" id="device-name" value={deviceName} onChange={handleDeviceName}></input>
+
+      <label className="input-group-text bg-white" htmlFor="device-room">Room this device is in:</label>
+      <select className="form-select" id="device-room" value={deviceRoom} onChange={handleDeviceRoom}>
+        <option></option>
+        { roomTypes.map(roomType => <option key={roomType} value={roomType}>{roomType}</option>) }
+      </select>
+
+      <label className="input-group-text bg-white" htmlFor="battery-exp">Battery expiration date (optional):</label>
+      <select className="form-select" id="battery-exp-month" value={batteryExpMonth} onChange={handleBatteryExpMonth}>
+        <option>Month</option>
+        { months.map(month => <option key={month} value={month}>{month}</option>) }
+      </select>
+      <select className="form-select" id="battery-exp-year" value={batteryExpYear} onChange={handleBatteryExpYear}>
+        <option>Year</option>
+        { years.map(year => <option key={year} value={year}>{year}</option>) }
+      </select>
+      </>
+      }
 
       <div className="d-grid">
         <button className="btn btn-lg btn-primary" onClick={updateDevice}>Update Device</button>

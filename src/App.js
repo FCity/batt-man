@@ -4,12 +4,35 @@ import Home from './components/Home'
 import DevicesTable from './components/DevicesTable'
 import AddDeviceForm from './components/AddDeviceForm'
 import UpdateDeviceForm from './components/UpdateDeviceForm'
-import About from './components/About'
 import './App.css'
 
 // Contexts
 export const AppContext = createContext(null)
 export const FormsContext = createContext(null)
+
+// Get Screen Size
+function getScreenSize() {
+  const { innerWidth: width } = window
+
+  return width
+}
+
+// Screen Size Setter Hook
+export function useScreenSize() {
+  const [ screenSize, setScreenSize ] = useState(getScreenSize())
+
+  useEffect(() => {
+    function handleResize() {
+      setScreenSize(getScreenSize())
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  return screenSize
+}
 
 export default function App() {
   // Constants
@@ -23,10 +46,6 @@ export default function App() {
   const [darkTheme, setDarkTheme] = useState(false)
 
   // Get Devices
-  useEffect(() => {
-    getDevices()
-  }, [])
-
   const getDevices = () => {
     let storedDevices = []
 
@@ -37,10 +56,11 @@ export default function App() {
     }
 
     setDevices(storedDevices)
-
-    console.log('localStorage:', localStorage)
-    console.log('state:', devices)
   }
+
+  useEffect(() => {
+    getDevices()
+  }, [])
 
   // Context Values
   const data = useMemo(() => ({
@@ -51,6 +71,11 @@ export default function App() {
   const options = { months, years, deviceTypes, roomTypes }
 
   const themeStyle = () => {
+    const body = document.getElementsByTagName('body')[0]
+
+    if (darkTheme) body.style.backgroundColor = '#000'
+    else body.style.backgroundColor = '#fff'
+    
     return {
       backgroundColor: darkTheme ? '#000' : '#fff',
       color: darkTheme ? '#fff' : '#000'
@@ -66,12 +91,12 @@ export default function App() {
     <Router>
       <div className="container-fluid" style={themeStyle()}>
         <div className="row">
-          <div className="col-11">
+          <div className="col-10 col-lg-11">
             <h1 className="display-1">BattMan</h1>
           </div>
-          <div className="col-1">
+          <div className="col-2 col-lg-1">
             <button
-              className={'btn ' + themeBtnStyle()}
+              className={'btn btn-theme ' + themeBtnStyle()}
               title="Toggle Dark Theme"
               onClick={() => setDarkTheme(prev => !prev)}>
                 { darkTheme ?
@@ -83,14 +108,13 @@ export default function App() {
           </div>
         </div>
 
-        <nav>
-          <Link to="/" className="btn btn-light" title="Homepage">Home</Link>
-          <Link to="/table/devices" className="btn btn-light" title="Device and Room Tables">View Devices</Link>
-          <Link to="/forms/add/device" className="btn btn-light" title="Add Room or Device">Add Device</Link>
-          <Link to="/about" className="btn btn-light" title="About Page">About</Link>
+        <nav className="btn-group">
+          <Link to="/" className="btn btn-light">Home</Link>
+          <Link to="/table/devices" className="btn btn-light">Edit Devices</Link>
+          <Link to="/forms/add/device" className="btn btn-light">Add Device</Link>
         </nav>
 
-        <div className="container">
+        <div className="app">
           <AppContext.Provider value={data}>
             <Route exact path="/" component={Home} />
             <Route path="/table/devices" component={DevicesTable} />
@@ -98,7 +122,6 @@ export default function App() {
               <Route path="/forms/add/device" component={AddDeviceForm} />
               <Route path="/forms/update/device/:id" component={UpdateDeviceForm} />
             </FormsContext.Provider>
-            <Route path="/about" component={About} />
           </AppContext.Provider>
         </div>
       </div>
