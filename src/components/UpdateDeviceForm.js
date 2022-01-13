@@ -48,8 +48,6 @@ export default function UpdateDeviceForm(props) {
     setDeviceRoom('')
     setBatteryExpMonth('')
     setBatteryExpYear('')
-
-    console.log('localStorage:', localStorage)
   }
 
   return (

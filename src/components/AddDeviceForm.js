@@ -37,8 +37,6 @@ export default function AddDeviceForm() {
     setDeviceRoom('')
     setBatteryExpMonth('')
     setBatteryExpYear('')
-
-    console.log('localStorage:', localStorage)
   }
 
   return (
