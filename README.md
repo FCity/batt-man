@@ -23,7 +23,12 @@ I definitely learned a lot in the process and hope that this app is as useful as
 - Bootstrap 5
 - ReactJS
 
-## Screenshot
+## Screenshots
+
+Desktop (light theme)
 
 ![Desktop version](./images/screenshot-desktop.jpg?raw=true)
+
+Mobile (dark theme)
+
 ![Mobile version](./images/screenshot-mobile.jpg?raw=true)
