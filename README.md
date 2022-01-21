@@ -22,3 +22,8 @@ I definitely learned a lot in the process and hope that this app is as useful as
 - CSS3
 - Bootstrap 5
 - ReactJS
+
+## Screenshot
+
+![Desktop version](./images/screenshot-desktop.jpg?raw=true)
+![Mobile version](./images/screenshot-mobile.jpg?raw=true)
