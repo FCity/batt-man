@@ -27,8 +27,12 @@ I definitely learned a lot in the process and hope that this app is as useful as
 
 Desktop (light theme)
 
-![Desktop version](./images/screenshot-desktop.jpg?raw=true)
+![Desktop view](./images/screenshot-desktop.jpg?raw=true)
 
 Mobile (dark theme)
 
-![Mobile version](./images/screenshot-mobile.jpg?raw=true)
+![Mobile view](./images/screenshot-mobile-1.jpg?raw=true)
+
+Mobile (light theme)
+
+![Mobile view](./images/screenshot-mobile-2.jpg?raw=true)
