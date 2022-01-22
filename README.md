@@ -36,3 +36,8 @@ Mobile (dark theme)
 Mobile (light theme)
 
 ![Mobile view](./images/screenshot-mobile-2.jpg?raw=true)
+
+## Links
+
+- Solution URL: [https://github.com/FCity/batt-man](https://github.com/FCity/batt-man)
+- Live Site URL: [https://fcity.github.io/batt-man](https://fcity.github.io/batt-man)
