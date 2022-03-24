@@ -62,20 +62,15 @@ export default function App() {
     getDevices()
   }, [])
 
-  // Context Values
-  const data = useMemo(() => ({
-    devices, setDevices, getDevices,
-    darkTheme
-  }), [devices, darkTheme])
-
-  const options = { months, years, deviceTypes, roomTypes }
-
-  const themeStyle = () => {
+  // Theme Functions
+  useEffect(() => {
     const body = document.getElementsByTagName('body')[0]
 
     if (darkTheme) body.style.backgroundColor = '#000'
     else body.style.backgroundColor = '#fff'
-    
+  }, [])
+
+  const themeStyle = () => {
     return {
       backgroundColor: darkTheme ? '#000' : '#fff',
       color: darkTheme ? '#fff' : '#000'
@@ -86,6 +81,14 @@ export default function App() {
     if (darkTheme) return 'btn-light'
     else return 'btn-dark'
   }
+
+  // Context Values
+  const data = useMemo(() => ({
+    devices, setDevices, getDevices,
+    darkTheme, themeStyle
+  }), [devices, darkTheme])
+
+  const options = { months, years, deviceTypes, roomTypes }
 
   return (
     <Router>

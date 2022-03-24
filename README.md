@@ -4,7 +4,7 @@
 
 It is a purely frontend app that will help you keep track of your batteries' expiration dates across rooms and devices.
 
-There is no backend to it -- no servers or databases. Instead, it makes use of your browser's localStorage. All app data gets stored there, making it a simple and convenient tool to use and maintain.
+There is no backend to it -- no servers or databases. Instead, it makes use of your browser's localStorage. All app data gets stored there, making it a simple and convenient tool to use and maintain. However, you should probably stick to one browser when using the app so that all your data is consistent.
 
 ## How it works
 

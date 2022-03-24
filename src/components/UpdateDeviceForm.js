@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react'
 import { AppContext, FormsContext, useScreenSize } from '../App'
 
 export default function UpdateDeviceForm(props) {
-  const { devices, getDevices } = useContext(AppContext)
+  const { devices, getDevices, darkTheme, themeStyle } = useContext(AppContext)
   const { months, years, deviceTypes, roomTypes } = useContext(FormsContext)
 
   const screenSize = useScreenSize()
@@ -50,12 +50,17 @@ export default function UpdateDeviceForm(props) {
     setBatteryExpYear('')
   }
 
+  const themeBootstrap = () => {
+    if (darkTheme) return ''
+    else return 'bg-white'
+  }
+
   return (
     <div className="form">
       { screenSize > 666 ? 
       <>
       <div className="input-group">
-        <label className="input-group-text bg-white" htmlFor="device-type">Device type:</label>
+        <label className={'input-group-text ' + themeBootstrap()} style={themeStyle()} htmlFor="device-type">Device type:</label>
         <select className="form-select" id="device-type" value={deviceType} onChange={handleDeviceType}>
           <option></option>
           { deviceTypes.map(deviceType => <option key={deviceType} value={deviceType}>{deviceType}</option>) }
@@ -63,12 +68,12 @@ export default function UpdateDeviceForm(props) {
       </div>
 
       <div className="input-group">
-        <label className="input-group-text bg-white" htmlFor="device-name">Device name (optional):</label>
+        <label className={'input-group-text ' + themeBootstrap()} style={themeStyle()} htmlFor="device-name">Device name (optional):</label>
         <input type="text" className="form-control" id="device-name" value={deviceName} onChange={handleDeviceName}></input>
       </div>
 
       <div className="input-group">
-        <label className="input-group-text bg-white" htmlFor="device-room">Room this device is in:</label>
+        <label className={'input-group-text ' + themeBootstrap()} style={themeStyle()} htmlFor="device-room">Room this device is in:</label>
         <select className="form-select" id="device-room" value={deviceRoom} onChange={handleDeviceRoom}>
           <option></option>
           { roomTypes.map(roomType => <option key={roomType} value={roomType}>{roomType}</option>) }
@@ -76,7 +81,7 @@ export default function UpdateDeviceForm(props) {
       </div>
 
       <div className="input-group">
-        <label className="input-group-text bg-white" htmlFor="battery-exp">Battery expiration date (optional):</label>
+        <label className={'input-group-text ' + themeBootstrap()} style={themeStyle()} htmlFor="battery-exp">Battery expiration date (optional):</label>
         <select className="form-select" id="battery-exp-month" value={batteryExpMonth} onChange={handleBatteryExpMonth}>
           <option>Month</option>
           { months.map(month => <option key={month} value={month}>{month}</option>) }
@@ -89,30 +94,36 @@ export default function UpdateDeviceForm(props) {
       </>
       :
       <>
-      <label className="input-group-text bg-white" htmlFor="device-type">Device type:</label>
+      <label className={'input-group-text ' + themeBootstrap()} style={themeStyle()} htmlFor="device-type">Device type:</label>
       <select className="form-select" id="device-type" value={deviceType} onChange={handleDeviceType}>
         <option></option>
         { deviceTypes.map(deviceType => <option key={deviceType} value={deviceType}>{deviceType}</option>) }
       </select>
 
-      <label className="input-group-text bg-white" htmlFor="device-name">Device name (optional):</label>
+      <label className={'input-group-text ' + themeBootstrap()} style={themeStyle()} htmlFor="device-name">Device name (optional):</label>
       <input type="text" className="form-control" id="device-name" value={deviceName} onChange={handleDeviceName}></input>
 
-      <label className="input-group-text bg-white" htmlFor="device-room">Room this device is in:</label>
+      <label className={'input-group-text ' + themeBootstrap()} style={themeStyle()} htmlFor="device-room">Room this device is in:</label>
       <select className="form-select" id="device-room" value={deviceRoom} onChange={handleDeviceRoom}>
         <option></option>
         { roomTypes.map(roomType => <option key={roomType} value={roomType}>{roomType}</option>) }
       </select>
 
-      <label className="input-group-text bg-white" htmlFor="battery-exp">Battery expiration date (optional):</label>
-      <select className="form-select" id="battery-exp-month" value={batteryExpMonth} onChange={handleBatteryExpMonth}>
-        <option>Month</option>
-        { months.map(month => <option key={month} value={month}>{month}</option>) }
-      </select>
-      <select className="form-select" id="battery-exp-year" value={batteryExpYear} onChange={handleBatteryExpYear}>
-        <option>Year</option>
-        { years.map(year => <option key={year} value={year}>{year}</option>) }
-      </select>
+      <label className={'input-group-text ' + themeBootstrap()} style={themeStyle()} htmlFor="battery-exp">Battery expiration date (optional):</label>
+      <div className="row">
+        <div className="col-6">
+          <select className="form-select" id="battery-exp-month" value={batteryExpMonth} onChange={handleBatteryExpMonth}>
+            <option>Month</option>
+            { months.map(month => <option key={month} value={month}>{month}</option>) }
+          </select>
+        </div>
+        <div className="col-6">
+          <select className="form-select" id="battery-exp-year" value={batteryExpYear} onChange={handleBatteryExpYear}>
+            <option>Year</option>
+            { years.map(year => <option key={year} value={year}>{year}</option>) }
+          </select>
+        </div>
+      </div>
       </>
       }
 
